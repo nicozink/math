@@ -9,6 +9,16 @@
 
 #include <math/projection_matrix.h>
 
+// Library Includes
+#include <reflection/register_class.h>
+
+REGISTER_CLASS(ProjectionMatrix)
+{
+	register_constructor();
+	register_static_method("CalculateOrthographic", &ProjectionMatrix::CalculateOrthographic);
+	register_static_method("CalculatePerspective", &ProjectionMatrix::CalculatePerspective);
+}
+
 Mat4 ProjectionMatrix::CalculateOrthographic(float width, float height)
 {
     Mat4 projection;

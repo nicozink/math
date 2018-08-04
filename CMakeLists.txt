@@ -8,6 +8,10 @@ if (EXISTS libraries/cpp_util/CMakeLists.txt)
 	add_subdirectory(libraries/cpp_util)
 endif()
 
+if (EXISTS libraries/reflection/CMakeLists.txt)
+	add_subdirectory(libraries/reflection)
+endif()
+
 set(SRC_MAIN
 	${CMAKE_CURRENT_SOURCE_DIR}/src/dimension.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/mat4.cpp
@@ -46,7 +50,7 @@ target_include_directories(math
 	PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-target_link_libraries(math cpp_util)
+target_link_libraries(math cpp_util reflection)
 
 add_library(math_tests ${SRC_TEST})
 set_target_properties(math_tests PROPERTIES FOLDER "tests")
