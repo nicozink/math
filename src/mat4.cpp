@@ -4,12 +4,21 @@
 
 #include <math/mat4.h>
 
-// Local Includes
-
-// Project Includes
-
 // System Includes
 #include <cmath>
+
+//
+// Reflection
+//
+
+#include <reflection/register_class.h>
+
+REGISTER_CLASS(Mat4)
+{
+	register_constructor();
+	register_method<float (Mat4::*)(int, int)>("Get", &Mat4::Get);
+	register_method<void (Mat4::*)(int, int, float)>("Set", &Mat4::Set);
+}
 
 // Creates a new instance of the Matrix class.
 Mat4::Mat4()

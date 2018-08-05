@@ -17,7 +17,8 @@ set(SRC_MAIN
 	${CMAKE_CURRENT_SOURCE_DIR}/src/mat4.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/projection_matrix.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/transform.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/vec3.cpp)
+	${CMAKE_CURRENT_SOURCE_DIR}/src/vec3.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/vec4.cpp)
 
 set(SRC_INTERFACE
 	${CMAKE_CURRENT_SOURCE_DIR}/include/math/dimension.h
