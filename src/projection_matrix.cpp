@@ -4,9 +4,6 @@
 
 #pragma once
 
-#ifndef math_projection_matrix_h
-#define math_projection_matrix_h
-
 #include <math/projection_matrix.h>
 
 // Library Includes
@@ -91,5 +88,3 @@ Mat4 ProjectionMatrix::CalculatePerspective(float aspect, float fov, float near,
 
 	return projection;
 }
-
-#endif
