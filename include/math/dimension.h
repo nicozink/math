@@ -16,7 +16,7 @@ public:
 	// Constructors
 	//
 
-	// Creates a new instance of the Matrix class.
+	// Creates a new instance of the Dimension class.
 	Dimension(int width, int height);
 
 	//

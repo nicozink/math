@@ -14,11 +14,19 @@ REGISTER_CLASS(Dimension)
 	register_method("get_height", &Dimension::get_height);
 }
 
+//
+// Constructors
+//
+
 Dimension::Dimension(int width, int height)
 {
 	this->width = width;
 	this->height = height;
 }
+
+//
+// Public Methods
+//
 
 int Dimension::get_width()
 {
