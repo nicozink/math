@@ -51,7 +51,7 @@ public:
 	// @param list The list of arguments.
 	Vector(std::initializer_list<TType> list)
 	{
-		Assert(list.size() == TSize, "The argument list did not match the vector size.");
+		D4_ASSERT(list.size() == TSize, "The argument list did not match the vector size.");
       
 		int c = 0;
       

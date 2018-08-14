@@ -59,8 +59,8 @@ class Matrix
     // @param list The list of arguments.
     Matrix(std::initializer_list<TType> list)
     {
-      Assert(list.size() == TSize * TSize,
-        "The argument list did not match the vector size.");
+		D4_ASSERT(list.size() == TSize * TSize,
+			"The argument list did not match the vector size.");
       
       int c = 0;
       
