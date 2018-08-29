@@ -14,9 +14,9 @@ class ProjectionMatrix
 {
 public:
 
-    static Mat4 CalculateOrthographic(float width, float height);
+    static void CalculateOrthographic(Mat4& matrix, float width, float height);
 
-    static Mat4 CalculatePerspective(float aspect, float fov, float near, float far);
+    static void CalculatePerspective(Mat4& matrix, float aspect, float fov, float near, float far);
 };
 
 #endif
