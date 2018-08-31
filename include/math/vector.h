@@ -235,6 +235,18 @@ public:
 		return to_return;
 	}
 
+	Vector<TType, TSize> operator*(TType value)
+	{
+		Vector<TType, TSize> to_return;
+
+		for (int i = 0; i < TSize; ++i)
+		{
+			to_return[i] = values[i] * value;
+		}
+
+		return to_return;
+	}
+
 private:
   
 	//
