@@ -89,7 +89,7 @@ public:
 
 		to_return[0] = values[1] * other[2] - values[2] * other[1];
 		to_return[1] = values[2] * other[0] - values[0] * other[2];
-		to_return[2] = values[0] * other[2] - values[1] * other[0];
+		to_return[2] = values[0] * other[1] - values[1] * other[0];
 
 		return to_return;
 	}
