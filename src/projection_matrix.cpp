@@ -60,23 +60,10 @@ void ProjectionMatrix::CalculatePerspective(Mat4& matrix, float aspect, float fo
 	const float t = height;
 	const float b = -height;
 
-	matrix(0, 0) = 2.0*near / (r - l);
-	matrix(0, 1) = 0.0;
-	matrix(0, 2) = (r + l) / (r - l);
-	matrix(0, 3) = 0.0;
-
-	matrix(1, 0) = 0.0;
-	matrix(1, 1) = 2.0*near / (t - b);
-	matrix(1, 2) = (t + b) / (t - b);
-	matrix(1, 3) = 0.0;
-
-	matrix(2, 0) = 0.0;
-	matrix(2, 1) = 0.0;
-	matrix(2, 2) = (far + near) / (near - far);
-	matrix(2, 3) = 2.0*far*near / (near - far);
-
-	matrix(3, 0) = 0.0;
-	matrix(3, 1) = 0.0;
-	matrix(3, 2) = -1.0;
-	matrix(3, 3) = 0.0;
+	matrix = Mat4{
+		2.0f * near / (r - l), 0.0, 0.0, 0.0,
+		0.0, 2.0f * near / (t - b), 0.0, 0.0,
+		(r + l) / (r - l), (t + b) / (t - b), -(far + near) / (far - near), -1.0,
+		0.0, 0.0, -2.0f * far * near / (far - near), 0.0
+	};
 }
