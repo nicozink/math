@@ -119,6 +119,13 @@ class Matrix
       return values;
     }
     
+	// Gets the values stored in the array.
+	// @returns The values.
+	const std::array<TType, TSize * TSize>& GetArray() const
+	{
+		return values;
+	}
+
     // Sets the rows and columns of the matrix to form an
     // identity matrix.
     void Identity()

@@ -121,6 +121,13 @@ public:
 		return values;
 	}
     
+	// Gets the values stored in the array.
+	// @returns The values.
+	const std::array<TType, TSize>& get_array() const
+	{
+		return values;
+	}
+
 	// Calculates the length of the vector.
 	TType length()
 	{
