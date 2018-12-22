@@ -47,7 +47,7 @@ class Transform
 
     // Gets the transformation matrix.
     // @returns The transform matrix.
-    const Mat4& GetTransform() const;
+    Mat4& GetTransform();
 
     // Sets the rotation of the object around each euler axis.
     // @param x The x axis.

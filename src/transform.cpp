@@ -70,7 +70,7 @@ void Transform::Calculate()
 
 // Gets the transformation matrix.
 // @returns The transform matrix.
-const Mat4& Transform::GetTransform() const
+Mat4& Transform::GetTransform()
 {
   return fullMatrix;
 }
