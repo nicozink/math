@@ -12,6 +12,7 @@ REGISTER_CLASS(Transform)
 {
 	register_constructor();
 	register_method("Calculate", &Transform::Calculate);
+  register_method("GetTransform", &Transform::GetTransform);
 	register_method("RotateEuler", &Transform::RotateEuler);
 	register_method("Scale", &Transform::Scale);
 	register_method("Translate", &Transform::Translate);
