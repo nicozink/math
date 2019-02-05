@@ -88,7 +88,7 @@ class Matrix
     // @returns The value.
     TType& operator () (int r, int c)
     {
-      return values[c * TSize + r];
+      return values[r * TSize + c];
     }
     
     // Returns the value stored in the given index.
@@ -109,7 +109,7 @@ class Matrix
     // @returns The value.
     TType Get(int r, int c)
     {
-      return values[c * TSize + r];
+      return values[r * TSize + c];
     }
     
     // Gets the values stored in the array.
@@ -175,7 +175,7 @@ class Matrix
     // @param v The value.
     void Set(int r, int c, TType v)
     {
-      values[c * TSize + r] = v;
+      values[r * TSize + c] = v;
     }
     
   private:
@@ -194,7 +194,7 @@ class Matrix
     // Gets the value of the array at the speicified position.
     TType& GetArrayValue(TType (&values)[TSize * TSize], int c, int r)
     {
-      return values[c * TSize + r];
+      return values[r * TSize + c];
     }
 };
 
