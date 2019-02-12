@@ -32,6 +32,7 @@ set(SRC_INTERFACE
 
 set(SRC_TEST
 	${CMAKE_CURRENT_SOURCE_DIR}/test/test_matrix.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/test/test_matrix_glm.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/test/test_vector.cpp)
 
 set(_src_root_path "${CMAKE_CURRENT_SOURCE_DIR}/")
@@ -54,15 +55,17 @@ target_include_directories(math
 
 target_link_libraries(math cpp_util reflection)
 
+find_package(glm CONFIG REQUIRED)
+
 add_library(math_tests ${SRC_TEST})
 set_target_properties(math_tests PROPERTIES FOLDER "tests")
 
-target_link_libraries(math_tests math unittest)
+target_link_libraries(math_tests math unittest glm)
 
 add_executable(math_test ${SRC_TEST})
 set_target_properties(math_test PROPERTIES FOLDER "executable")
 
-target_link_libraries(math_test math unittest)
+target_link_libraries(math_test math unittest glm)
 
 add_test(NAME math_test
 	COMMAND math_test)
