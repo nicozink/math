@@ -13,6 +13,7 @@ if (EXISTS libraries/reflection/CMakeLists.txt)
 endif()
 
 set(SRC_MAIN
+	${CMAKE_CURRENT_SOURCE_DIR}/src/camera.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/dimension.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/mat4.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/projection_matrix.cpp
@@ -21,6 +22,7 @@ set(SRC_MAIN
 	${CMAKE_CURRENT_SOURCE_DIR}/src/vec4.cpp)
 
 set(SRC_INTERFACE
+	${CMAKE_CURRENT_SOURCE_DIR}/include/math/camera.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/math/dimension.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/math/mat4.h
 	${CMAKE_CURRENT_SOURCE_DIR}/include/math/matrix.h

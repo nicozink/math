@@ -13,6 +13,11 @@
 
 #include <reflection/register_class.h>
 
+namespace
+{
+
+}
+
 REGISTER_CLASS(Mat4)
 {
 	register_constructor();
@@ -34,6 +39,15 @@ Mat4::Mat4(float values[16])
 
 }
 
+Mat4::Mat4(float identity_value)
+	: Matrix({ identity_value, 0.0f, 0.0f, 0.0f,
+		0.0f, identity_value, 0.0f, 0.0f,
+		0.0f, 0.0f, identity_value, 0.0f,
+		0.0f, 0.0f, 0.0f, identity_value, })
+{
+
+}
+
 // Creates a new instance of the Matrix class.
 // @param list The list of arguments.
 Mat4::Mat4(std::initializer_list<float> list)
@@ -48,68 +62,117 @@ Mat4::~Mat4()
 
 }
 
-// Sets the rotation of the object around each euler axis.
-// The rotation is applied in the order of yxz.
-// @param x The x axis.
-// @param y The y axis.
-// @param z The z axis.
-void Mat4::RotateEuler(float x, float y, float z)
+void Mat4::Identity(Mat4& matrix)
 {
-  (*this)(0, 0) = cos(z) * cos(y) - sin(z) * sin(x) * sin(y);
-  (*this)(1, 0) = sin(z) * cos(y) + cos(z) * sin(x) * sin(y);
-  (*this)(2, 0) = -cos(x) * sin(y);
-  (*this)(3, 0) = 0;
+	matrix(0, 0) = 1.0f;
+	matrix(0, 1) = 0.0f;
+	matrix(0, 2) = 0.0f;
+	matrix(0, 3) = 0.0f;
 
-  (*this)(0, 1) = -sin(z) * cos(x);
-  (*this)(1, 1) = cos(z) * cos(x);
-  (*this)(2, 1) = sin(x);
-  (*this)(3, 1) = 0;
+	matrix(1, 0) = 0.0f;
+	matrix(1, 1) = 1.0f;
+	matrix(1, 2) = 0.0f;
+	matrix(1, 3) = 0.0f;
 
-  (*this)(0, 2) = cos(z) * sin(y) + sin(z) * sin(x) * cos(y);
-  (*this)(1, 2) = sin(z) * sin(y) - cos(z) * sin(x) * cos(y);
-  (*this)(2, 2) = cos(x) * cos(y);
-  (*this)(3, 2) = 0;
+	matrix(2, 0) = 0.0f;
+	matrix(2, 1) = 0.0f;
+	matrix(2, 2) = 1.0f;
+	matrix(2, 3) = 0.0f;
 
-  (*this)(0, 3) = 0;
-  (*this)(1, 3) = 0;
-  (*this)(2, 3) = 0;
-  (*this)(3, 3) = 1;
+	matrix(3, 0) = 0.0f;
+	matrix(3, 1) = 0.0f;
+	matrix(3, 2) = 0.0f;
+	matrix(3, 3) = 1.0f;
 }
 
-// Sets the scale of the object.
-// @param scale The scale.
-void Mat4::Scale(float scale)
+void Mat4::Rotate(Mat4& matrix, Vec3 vec, float delta)
 {
-  Identity();
+	Mat4 rotate_matrix;
 
-  (*this)(0, 0) = scale;
-  (*this)(1, 1) = scale;
-  (*this)(2, 2) = scale;
+	float cos_d = cos(delta);
+	float sin_d = sin(delta);
+
+	float r_x = vec[0];
+	float r_y = vec[1];
+	float r_z = vec[2];
+
+	rotate_matrix(0, 0) = cos_d + pow(r_x, 2.0f) * (1.0f - cos_d);
+	rotate_matrix(0, 1) = r_y * vec[0] * (1.0f - cos_d) + r_z * sin_d;
+	rotate_matrix(0, 2) = r_z * r_x * (1.0f - cos_d) - r_y * sin_d;
+	rotate_matrix(0, 3) = 0;
+
+	rotate_matrix(1, 0) = r_x * r_y * (1.0f - cos_d) - r_z * sin_d;
+	rotate_matrix(1, 1) = cos_d + pow(r_y, 2.0f) * (1.0f - cos_d);
+	rotate_matrix(1, 2) = r_z * r_y * (1.0f - cos_d) + r_x * sin_d;
+	rotate_matrix(1, 3) = 0;
+
+	rotate_matrix(2, 0) = r_x * r_z * (1.0f - cos_d) + r_y * sin_d;
+	rotate_matrix(2, 1) = r_y * r_z * (1.0f - cos_d) - r_x * sin_d;
+	rotate_matrix(2, 2) = cos_d + pow(r_z, 2.0f) * (1.0f - cos_d);
+	rotate_matrix(2, 3) = 0;
+
+	rotate_matrix(3, 0) = 0;
+	rotate_matrix(3, 1) = 0;
+	rotate_matrix(3, 2) = 0;
+	rotate_matrix(3, 3) = 1;
+
+	matrix.RightMultiply(rotate_matrix);
 }
 
-// Sets the scale of the object.
-// @param scalex The x scale.
-// @param scaley The y scale.
-// @param scalez The z scale.
-void Mat4::ScaleXYZ(float scalex, float scaley, float scalez)
+void Mat4::RotateEuler(Mat4& matrix, float x, float y, float z)
 {
-  Identity();
-
-  (*this)(0, 0) = scalex;
-  (*this)(1, 1) = scaley;
-  (*this)(2, 2) = scalez;
+	RotateX(matrix, x);
+	RotateY(matrix, y);
+	RotateZ(matrix, z);
 }
 
-// Creates a new translation matrix.
-// @param x The x coordinate.
-// @param y The y coordinate.
-// @param z The z coordinate.
-// 2returns The matrix.
-void Mat4::Translate(float x, float y, float z)
+void Mat4::RotateX(Mat4& matrix, float delta)
 {
-  Identity();
+	Rotate(matrix, Vec3(1.0f, 0.0f, 0.0f), delta);
+}
 
-  (*this)(0, 3) = x;
-  (*this)(1, 3) = y;
-  (*this)(2, 3) = z;
+void Mat4::RotateY(Mat4& matrix, float delta)
+{
+	Rotate(matrix, Vec3(0.0f, 1.0f, 0.0f), delta);
+}
+
+void Mat4::RotateZ(Mat4& matrix, float delta)
+{
+	Rotate(matrix, Vec3(0.0f, 0.0f, 1.0f), delta);
+}
+
+void Mat4::Scale(Mat4& matrix, float scale)
+{
+	Mat4 scale_matrix;
+	Mat4::Identity(scale_matrix);
+
+	scale_matrix(0, 0) = scale;
+	scale_matrix(1, 1) = scale;
+	scale_matrix(2, 2) = scale;
+
+	matrix.RightMultiply(scale_matrix);
+}
+
+void Mat4::ScaleXYZ(Mat4& matrix, Vec3 vec)
+{
+	Mat4 scale_matrix;
+	Mat4::Identity(scale_matrix);
+
+	scale_matrix(0, 0) = vec[0];
+	scale_matrix(1, 1) = vec[1];
+	scale_matrix(2, 2) = vec[2];
+
+	matrix.RightMultiply(scale_matrix);
+}
+
+void Mat4::Translate(Mat4& matrix, Vec3 vec)
+{
+	Mat4 translate_matrix;
+	Mat4::Identity(translate_matrix);
+
+	translate_matrix(3, 0) = vec[0];
+	translate_matrix(3, 1) = vec[1];
+	translate_matrix(3, 2) = vec[2];
+
+	matrix.RightMultiply(translate_matrix);
 }

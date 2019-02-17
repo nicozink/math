@@ -35,8 +35,8 @@ TEST(Matrix, TestGetter)
   Matrix<float, 2> matrix(array);
   
   ASSERT_EQ(matrix.Get(0, 0), 1.0) << "An incorrect value was returned.";
-  ASSERT_EQ(matrix.Get(1, 0), 2.0) << "An incorrect value was returned.";
-  ASSERT_EQ(matrix.Get(0, 1), 3.0) << "An incorrect value was returned.";
+  ASSERT_EQ(matrix.Get(1, 0), 3.0) << "An incorrect value was returned.";
+  ASSERT_EQ(matrix.Get(0, 1), 2.0) << "An incorrect value was returned.";
   ASSERT_EQ(matrix.Get(1, 1), 4.0) << "An incorrect value was returned.";
 }
 
@@ -48,8 +48,8 @@ TEST(Matrix, TestOperatorGetter)
   Matrix<float, 2> matrix(array);
   
   ASSERT_EQ(matrix(0, 0), 1.0) << "An incorrect value was returned.";
-  ASSERT_EQ(matrix(1, 0), 2.0) << "An incorrect value was returned.";
-  ASSERT_EQ(matrix(0, 1), 3.0) << "An incorrect value was returned.";
+  ASSERT_EQ(matrix(1, 0), 3.0) << "An incorrect value was returned.";
+  ASSERT_EQ(matrix(0, 1), 2.0) << "An incorrect value was returned.";
   ASSERT_EQ(matrix(1, 1), 4.0) << "An incorrect value was returned.";
 }
 
@@ -68,8 +68,8 @@ TEST(Matrix, TestSetter)
   auto results = matrix.GetArray();
 
   ASSERT_EQ(results[0], 5.0) << "An incorrect value was returned.";
-  ASSERT_EQ(results[1], 6.0) << "An incorrect value was returned.";
-  ASSERT_EQ(results[2], 7.0) << "An incorrect value was returned.";
+  ASSERT_EQ(results[1], 7.0) << "An incorrect value was returned.";
+  ASSERT_EQ(results[2], 6.0) << "An incorrect value was returned.";
   ASSERT_EQ(results[3], 8.0) << "An incorrect value was returned.";
 }
 
@@ -88,7 +88,7 @@ TEST(Matrix, TestOperatorSetter)
   auto results = matrix.GetArray();
 
   ASSERT_EQ(results[0], 5.0) << "An incorrect value was returned.";
-  ASSERT_EQ(results[1], 6.0) << "An incorrect value was returned.";
-  ASSERT_EQ(results[2], 7.0) << "An incorrect value was returned.";
+  ASSERT_EQ(results[1], 7.0) << "An incorrect value was returned.";
+  ASSERT_EQ(results[2], 6.0) << "An incorrect value was returned.";
   ASSERT_EQ(results[3], 8.0) << "An incorrect value was returned.";
 }

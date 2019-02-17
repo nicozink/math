@@ -30,21 +30,21 @@ void ProjectionMatrix::CalculateOrthographic(Mat4& matrix, float width, float he
 	matrix(0, 0) = 2.0f / (r - l);
 	matrix(0, 1) = 0.0f;
 	matrix(0, 2) = 0.0f;
-	matrix(0, 3) = -(r + l) / (r - l);
+	matrix(0, 3) = 0.0f;
 
 	matrix(1, 0) = 0.0f;
 	matrix(1, 1) = 2.0f / (t - b);
 	matrix(1, 2) = 0.0f;
-	matrix(1, 3) = (t + b) / (t - b);
+	matrix(1, 3) = 0.0f;
 
 	matrix(2, 0) = 0.0f;
 	matrix(2, 1) = 0.0f;
 	matrix(2, 2) = -2.0f / (f - n);
-	matrix(2, 3) = -(f + n) / (f - n);
+	matrix(2, 3) = 0.0f;
 
-	matrix(3, 0) = 0.0f;
-	matrix(3, 1) = 0.0f;
-	matrix(3, 2) = 0.0f;
+	matrix(3, 0) = -(r + l) / (r - l);
+	matrix(3, 1) = -(t + b) / (t - b);
+	matrix(3, 2) = -(f + n) / (f - n);
 	matrix(3, 3) = 1.0f;
 }
 
@@ -61,6 +61,11 @@ void ProjectionMatrix::CalculatePerspective(Mat4& matrix, float aspect, float fo
 	const float b = -height;
 
 	matrix = Mat4{
+		//1.0, 0.0, 0.0, 0.0,
+		//0.0, 1.0, 0.0, 0.0,
+		//0.0, 0.0, 1.0, 0.0,
+		//0.0, 0.0, 0.0, 1.0
+
 		2.0f * near / (r - l), 0.0, 0.0, 0.0,
 		0.0, 2.0f * near / (t - b), 0.0, 0.0,
 		(r + l) / (r - l), (t + b) / (t - b), -(far + near) / (far - near), -1.0,

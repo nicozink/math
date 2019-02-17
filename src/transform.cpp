@@ -25,10 +25,10 @@ REGISTER_CLASS(Transform)
 // Initialises a new instance of the transform class.
 Transform::Transform()
 {
-  rotationMatrix.Identity();
-  scaleMatrix.Identity();
-  translationMatrix.Identity();
-  fullMatrix.Identity();
+  Mat4::Identity(rotationMatrix);
+  Mat4::Identity(scaleMatrix);
+  Mat4::Identity(translationMatrix);
+  Mat4::Identity(fullMatrix);
 }
 
 // Initialises a new instance of the transform class.
@@ -62,11 +62,11 @@ Transform::~Transform()
 // Calculates the transform.
 void Transform::Calculate()
 {
-  fullMatrix.Identity();
+  Mat4::Identity(fullMatrix);
 
-  fullMatrix.LeftMultiply(scaleMatrix);
-  fullMatrix.LeftMultiply(rotationMatrix);
-  fullMatrix.LeftMultiply(translationMatrix);
+  fullMatrix.RightMultiply(translationMatrix);
+  fullMatrix.RightMultiply(rotationMatrix); 
+  fullMatrix.RightMultiply(scaleMatrix);
 }
 
 // Gets the transformation matrix.
@@ -82,14 +82,16 @@ Mat4& Transform::GetTransform()
 // @param z The z axis.
 void Transform::RotateEuler(float x, float y, float z)
 {
-  rotationMatrix.RotateEuler(x, y, z);
+  Mat4::Identity(rotationMatrix);
+  Mat4::RotateEuler(rotationMatrix, x, y, z);
 }
 
 // Sets the scale of the transform.
 // @param scale The scale.
 void Transform::Scale(float scale)
 {
-  scaleMatrix.Scale(scale);
+	Mat4::Identity(scaleMatrix);
+	Mat4::Scale(scaleMatrix, scale);
 }
 
 // Sets the scale of the transform.
@@ -98,7 +100,8 @@ void Transform::Scale(float scale)
 // @param scalez The z scale.
 void Transform::ScaleXYZ(float scalex, float scaley, float scalez)
 {
-  scaleMatrix.ScaleXYZ(scalex, scaley, scalez);
+	Mat4::Identity(scaleMatrix);
+	Mat4::ScaleXYZ(scaleMatrix, Vec3(scalex, scaley, scalez));
 }
 
 // Sets the matrix of this transform.
@@ -119,5 +122,6 @@ void Transform::SetMatrix(Mat4&& matrix)
 // @param scale The scale.
 void Transform::Translate(float x, float y, float z)
 {
-  translationMatrix.Translate(x, y, z);
+	Mat4::Identity(translationMatrix);
+	Mat4::Translate(translationMatrix, Vec3(x, y, z));
 }

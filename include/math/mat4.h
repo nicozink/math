@@ -9,6 +9,7 @@
 
 // Local Includes
 #include "Matrix.h"
+#include "vec3.h"
 
 // Project Includes
 
@@ -27,6 +28,10 @@ public:
 	Mat4();
 
 	// Creates a new instance of the Matrix class.
+	// @param identity_value The initial value.
+	Mat4(float identity_value);
+
+	// Creates a new instance of the Matrix class.
 	// @param values The values.
 	Mat4(float values[16]);
 
@@ -38,31 +43,57 @@ public:
 	virtual ~Mat4();
 
 	//
-	// Public Methods
+	// Public Static Methods
 	//
 
 	// Sets the rotation of the object around each euler axis.
-	// @param x The x axis.
-	// @param y The y axis.
-	// @param z The z axis.
-	void RotateEuler(float x, float y, float z);
+	// @param matrix The matrix.
+	// @param vec The rotation vector.
+	// @param delta The z axis.
+	static void Identity(Mat4& matrix);
+
+	// Sets the rotation of the object around each euler axis.
+	// @param matrix The matrix.
+	// @param vec The rotation vector.
+	// @param delta The z axis.
+	static void Rotate(Mat4& matrix, Vec3 vec, float delta);
+
+	// Sets the rotation of the object around each euler axis.
+	// @param matrix The matrix.
+	// @param x The rotation around the x axis.
+	// @param y The rotation around the y axis.
+	// @param z The rotation around the z axis.
+	static void RotateEuler(Mat4& matrix, float x, float y, float z);
+
+	// Sets the rotation of the object around each euler axis.
+	// @param matrix The matrix.
+	// @param delta The rotation around the x axis.
+	static void RotateX(Mat4& matrix, float delta);
+
+	// Sets the rotation of the object around each euler axis.
+	// @param matrix The matrix.
+	// @param delta The rotation around the y axis.
+	static void RotateY(Mat4& matrix, float delta);
+	
+	// Sets the rotation of the object around each euler axis.
+	// @param matrix The matrix.
+	// @param delta The rotation around the z axis.
+	static void RotateZ(Mat4& matrix, float delta);
 
 	// Sets the scale of the object.
-	// @param scale The scale.
-	void Scale(float scale);
+	// @param matrix The matrix.
+	// @param scale The scale factor.
+	static void Scale(Mat4& matrix, float scale);
     
 	// Sets the scale of the object.
-	// @param scalex The x scale.
-	// @param scaley The y scale.
-	// @param scalez The z scale.
-	void ScaleXYZ(float scalex, float scaley, float scalez);
+	// @param matrix The matrix.
+	// @param vec The scale vector.
+	static void ScaleXYZ(Mat4& matrix, Vec3 vec);
     
 	// Creates a new translation matrix.
-	// @param x The x coordinate.
-	// @param y The y coordinate.
-	// @param z The z coordinate.
-	// 2returns The matrix.
-	void Translate(float x, float y, float z);
+	// @param matrix The matrix.
+	// @param vec The translation vector.
+	static void Translate(Mat4& matrix, Vec3 vec);
 };
 
 #endif
