@@ -46,7 +46,7 @@ foreach(_source IN ITEMS ${SRC_MAIN} ${SRC_INTERFACE} ${SRC_TEST})
 	source_group("${_group_path}" FILES "${_source}")
 endforeach()
 
-add_library(math ${SRC_MAIN} ${SRC_INTERFACE})
+create_library(math library ${SRC_MAIN} ${SRC_INTERFACE})
 
 target_include_directories(math
 	PUBLIC
@@ -59,13 +59,11 @@ target_link_libraries(math cpp_util reflection)
 
 find_package(glm CONFIG REQUIRED)
 
-add_library(math_tests ${SRC_TEST})
-set_target_properties(math_tests PROPERTIES FOLDER "tests")
+create_library(math_tests tests ${SRC_TEST})
 
 target_link_libraries(math_tests math unittest glm)
 
-add_executable(math_test ${SRC_TEST})
-set_target_properties(math_test PROPERTIES FOLDER "executable")
+create_executable(math_test test ${SRC_TEST})
 
 target_link_libraries(math_test math unittest glm)
 
