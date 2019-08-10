@@ -16,6 +16,7 @@
 #include <array>
 #include <cstdarg>
 #include <initializer_list>
+#include <cmath>
 
 // Referenced classes.
 
@@ -138,7 +139,7 @@ public:
 			length += values[i] * values[i];
 		}
 
-		return sqrt(length);
+        return std::sqrt(length);
 	}
 
 	// Normalises the vector.

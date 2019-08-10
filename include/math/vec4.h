@@ -8,7 +8,7 @@
 #define math_vec4_h
 
 // Local Includes
-#include "Vector.h"
+#include "vector.h"
 
 typedef Vector<float, 4> Vec4;
 

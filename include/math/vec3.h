@@ -8,7 +8,7 @@
 #define math_vec3_h
 
 // Local Includes
-#include "Vector.h"
+#include "vector.h"
 
 typedef Vector<float, 3> Vec3;
 

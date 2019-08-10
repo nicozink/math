@@ -2,8 +2,6 @@
 // https://github.com/nicozink/darkentity.git
 // Licensed under GNU General Public License 3.0 or later.
 
-#pragma once
-
 #include <math/vec4.h>
 
 // Library Includes

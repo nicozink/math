@@ -8,7 +8,7 @@
 #define math_mat4_h
 
 // Local Includes
-#include "Matrix.h"
+#include "matrix.h"
 #include "vec3.h"
 
 // Project Includes

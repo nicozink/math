@@ -2,8 +2,6 @@
 // https://github.com/nicozink/darkentity.git
 // Licensed under GNU General Public License 3.0 or later.
 
-#pragma once
-
 #include <math/projection_matrix.h>
 
 // Library Includes
