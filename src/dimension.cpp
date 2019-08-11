@@ -9,7 +9,7 @@
 
 REGISTER_CLASS(Dimension)
 {
-	register_constructor<int, int>();
+	register_constructor<float, float>();
 	register_method("get_width", &Dimension::get_width);
 	register_method("get_height", &Dimension::get_height);
 }
@@ -18,22 +18,22 @@ REGISTER_CLASS(Dimension)
 // Constructors
 //
 
-Dimension::Dimension(int width, int height)
+Dimension::Dimension(float width, float height)
 {
-	this->width = width;
-	this->height = height;
+	m_width = width;
+	m_height = height;
 }
 
 //
 // Public Methods
 //
 
-int Dimension::get_width()
+float Dimension::get_width()
 {
-	return width;
+	return m_width;
 }
 
-int Dimension::get_height()
+float Dimension::get_height()
 {
-	return height;
+	return m_height;
 }

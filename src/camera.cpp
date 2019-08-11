@@ -22,17 +22,17 @@ REGISTER_CLASS(Camera)
 
 Camera::Camera()
 {
-	position = Vec3(0.0f, 0.0f, 0.0f);
-	direction = Vec3(0.0f, 0.0f, 1.0f);
-	world_up = Vec3(0.0f, 1.0f, 0.0f);
+	m_position = Vec3(0.0f, 0.0f, 0.0f);
+	m_direction = Vec3(0.0f, 0.0f, 1.0f);
+	m_world_up = Vec3(0.0f, 1.0f, 0.0f);
 }
 
 void Camera::calculate()
 {
-	camera_transform = Mat4{
-		right[0], up[0], -direction[0], 0.0f,
-		right[1], up[1], -direction[1], 0.0f,
-		right[2], up[2], -direction[2], 0.0f,
+	m_camera_transform = Mat4{
+		m_right[0], m_up[0], -m_direction[0], 0.0f,
+		m_right[1], m_up[1], -m_direction[1], 0.0f,
+		m_right[2], m_up[2], -m_direction[2], 0.0f,
 		0.0f, 0.0f, 0.0f, 1.0f
 	};
 
@@ -40,59 +40,59 @@ void Camera::calculate()
 		1.0f, 0.0f, 0.0f, 0.0f,
 		0.0f, 1.0f, 0.0f, 0.0f,
 		0.0f, 0.0f, 1.0f, 0.0f,
-		-position[0], -position[1], -position[2], 1.0f,
+		-m_position[0], -m_position[1], -m_position[2], 1.0f,
 	};
 
-	camera_transform.RightMultiply(transform_matrix);
+	m_camera_transform.RightMultiply(transform_matrix);
 }
 
 Mat4& Camera::get_matrix()
 {
-	return camera_transform;
+	return m_camera_transform;
 }
 
 Vec3& Camera::get_position()
 {
-	return position;
+	return m_position;
 }
 
 Vec3& Camera::get_direction()
 {
-	return direction;
+	return m_direction;
 }
 
 Vec3& Camera::get_right()
 {
-	return right;
+	return m_right;
 }
 
 Vec3& Camera::get_up()
 {
-	return up;
+	return m_up;
 }
 
 Vec3& Camera::get_world_up()
 {
-	return world_up;
+	return m_world_up;
 }
 
 void Camera::set_direction(Vec3 direction)
 {
-	this->direction = direction.normalise();
+	m_direction = direction.normalise();
 
-	right = this->direction.cross(world_up).normalise();
-	up = right.cross(this->direction);
+	m_right = m_direction.cross(m_world_up).normalise();
+	m_up = m_right.cross(m_direction);
 }
 
 void Camera::set_position(Vec3 position)
 {
-	this->position = position;
+	m_position = position;
 }
 
 void Camera::set_world_up(Vec3 world_up)
 {
-	this->world_up = world_up;
+	m_world_up = world_up;
 
-	right = direction.cross(world_up).normalise();
-	up = right.cross(direction);
+	m_right = m_direction.cross(world_up).normalise();
+	m_up = m_right.cross(m_direction);
 }

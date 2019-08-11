@@ -17,7 +17,7 @@ public:
 	//
 
 	// Creates a new instance of the Dimension class.
-	Dimension(int width, int height);
+	Dimension(float width, float height);
 
 	//
 	// Public Methods
@@ -25,11 +25,11 @@ public:
 
 	// Gets the width.
 	// @returns The width.
-	int get_width();
+	float get_width();
 
 	// Gets the height.
 	// @returns The height.
-	int get_height();
+	float get_height();
 
 private:
 
@@ -37,9 +37,9 @@ private:
 	// Private Variables
 	//
 
-	int width;
+	float m_width;
 
-	int height;
+	float m_height;
 };
 
 #endif

@@ -39,17 +39,17 @@ public:
 
 private:
 
-	Mat4 camera_transform;
+	Mat4 m_camera_transform;
 
-	Vec3 direction;
+	Vec3 m_direction;
 
-	Vec3 position;
+	Vec3 m_position;
 	
-	Vec3 right;
+	Vec3 m_right;
 
-	Vec3 up;
+	Vec3 m_up;
 
-	Vec3 world_up;
+	Vec3 m_world_up;
 };
 
 #endif
