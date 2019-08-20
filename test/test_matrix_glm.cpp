@@ -10,8 +10,10 @@
 #include <unittest/test.h>
 
 // Thirdparty Includes
+#pragma warning(push, 0)
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+#pragma warning(pop)
 
 // Tests constructing a matrix.
 TEST(MatrixGLM, ConstructPerspective)
@@ -20,7 +22,7 @@ TEST(MatrixGLM, ConstructPerspective)
 	float* matrix_values = glm::value_ptr(glm_matrix);
 
 	Mat4 matrix;
-	ProjectionMatrix::CalculatePerspective(matrix, 1.33f, glm::radians(45.0), 0.1, 10.0);
+	ProjectionMatrix::CalculatePerspective(matrix, 1.33f, (float)glm::radians(45.0), 0.1f, 10.0f);
 
 	for (int i = 0; i < 16; ++i)
 	{
