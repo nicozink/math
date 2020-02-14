@@ -7,6 +7,9 @@
 // Library Includes
 #include <reflection/register_class.h>
 
+// System Includes
+#include <cmath>
+
 REGISTER_CLASS(ProjectionMatrix)
 {
 	register_constructor();
@@ -48,7 +51,7 @@ void ProjectionMatrix::CalculateOrthographic(Mat4& matrix, float width, float he
 
 void ProjectionMatrix::CalculatePerspective(Mat4& matrix, float aspect, float fov, float near, float far)
 {
-    const float width = near * std::tanf(fov / 2.0f) * aspect;
+    const float width = near * tanf(fov / 2.0f) * aspect;
 
 	const float l = -width;
 	const float r = width;

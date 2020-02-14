@@ -2,6 +2,9 @@
 // https://github.com/nicozink/darkentity.git
 // Licensed under GNU General Public License 3.0 or later.
 
+// Build Tools
+#include <build_tools/warnings.h>
+
 // Project Includes
 #include <math/camera.h>
 #include <math/Matrix.h>
@@ -10,10 +13,11 @@
 #include <unittest/test.h>
 
 // Thirdparty Includes
-#pragma warning(push, 0)
+DISABLE_WARNINGS_BEGIN()
+DISABLE_WARNING(4201)
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
-#pragma warning(pop)
+DISABLE_WARNINGS_END()
 
 // Tests constructing a matrix.
 TEST(MatrixGLM, ConstructPerspective)

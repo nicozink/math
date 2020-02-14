@@ -61,11 +61,11 @@ find_package(glm CONFIG REQUIRED)
 
 create_library(math_tests tests ${SRC_TEST})
 
-target_link_libraries(math_tests math unittest glm)
+target_link_libraries(math_tests build_tools math unittest glm)
 
 create_executable(math_test test ${SRC_TEST})
 
-target_link_libraries(math_test math unittest glm)
+target_link_libraries(math_test build_tools math unittest glm)
 
 add_test(NAME math_test
 	COMMAND math_test)

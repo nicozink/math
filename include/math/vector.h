@@ -51,6 +51,7 @@ public:
 	// Creates a new instance of the Vector class.
 	// @param list The list of arguments.
 	Vector(std::initializer_list<TType> list)
+		: values{ }
 	{
 		D4_ASSERT(list.size() == TSize, "The argument list did not match the vector size.");
       

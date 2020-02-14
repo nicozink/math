@@ -15,7 +15,7 @@ All rights reserved.
 // Tests constructing a vector by verifying the underlying values.
 TEST(Matrix, ConstructVector)
 {
-  Vector<float, 2> vector{ 1.0, 2.0 };
+  Vector<float, 2> vector({ 1.0, 2.0 });
   
   auto& results = vector.get_array();
 
