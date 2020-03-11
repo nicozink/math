@@ -6,7 +6,7 @@ All rights reserved.
 // Local Includes
 
 // Project Includes
-#include <math/Matrix.h>
+#include <math/matrix.h>
 #include <unittest/test.h>
 
 // External Includes

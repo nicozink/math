@@ -7,7 +7,7 @@
 
 // Project Includes
 #include <math/camera.h>
-#include <math/Matrix.h>
+#include <math/matrix.h>
 #include <math/projection_matrix.h>
 #include <math/transform.h>
 #include <unittest/test.h>

@@ -6,7 +6,7 @@ All rights reserved.
 // Local Includes
 
 // Project Includes
-#include <math/Vector.h>
+#include <math/vector.h>
 #include <unittest/test.h>
 
 // External Includes
