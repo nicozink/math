@@ -1,16 +1,14 @@
 cmake_minimum_required(VERSION 3.0)
 
-PROJECT(input VERSION 1.0.0)
+include(${LIBRARY_FOLDER}/build_tools/cmake/cmake_utils.cmake)
+
+PROJECT(math VERSION 1.0.0)
 
 enable_testing()
 
-if (EXISTS libraries/cpp_util/CMakeLists.txt)
-	add_subdirectory(libraries/cpp_util)
-endif()
-
-if (EXISTS libraries/reflection/CMakeLists.txt)
-	add_subdirectory(libraries/reflection)
-endif()
+import_library(cpp_util)
+import_library(reflection)
+import_library(unittest)
 
 set(SRC_MAIN
 	${CMAKE_CURRENT_SOURCE_DIR}/src/camera.cpp
@@ -57,15 +55,22 @@ target_include_directories(math
 
 target_link_libraries(math cpp_util reflection)
 
-find_package(glm CONFIG REQUIRED)
+# We actually do have a dependency on glm.
+# There seems to be a vcpkg bug finding it
+# for Emscripten - and things happen to
+# compile without it.
+#find_package(glm CONFIG REQUIRED)
 
 create_library(math_tests tests ${SRC_TEST})
 
-target_link_libraries(math_tests build_tools math unittest glm)
+target_link_libraries(math_tests build_tools math unittest)
 
 create_executable(math_test test ${SRC_TEST})
 
-target_link_libraries(math_test build_tools math unittest glm)
+target_link_libraries(math_test build_tools math unittest)
 
-add_test(NAME math_test
-	COMMAND math_test)
+if (${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
+	add_test(NAME math_test COMMAND ${NODE_JS} "${CMAKE_CURRENT_BINARY_DIR}/math_test.js")
+else ()
+	add_test(NAME math_test COMMAND math_test)
+endif ()
